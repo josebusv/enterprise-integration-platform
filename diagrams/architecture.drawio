@@ -1,31 +1,145 @@
-[External System]
-        |
-        | HTTP REST
-        v
-[API Gateway - Laravel]
-        |
-        | HTTP
-        v
-[Order Service - Lumen]
-        |
-        | Kafka Producer
-        v
-[Kafka Topic: order.created]
-        |
-        | Kafka Consumer
-        +------------------+
-        |                  |
-        v                  v
-[Payment Service]     [Audit Service]
-        |
-        | Kafka Producer
-        v
-[Kafka Topic: payment.confirmed / failed]
-        |
-        | Kafka Consumer
-        v
-[Audit Service]
-
-(Order Service) ---> PostgreSQL
-(Payment Service) -> PostgreSQL
-(Audit Service) ---> PostgreSQL
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.10">
+  <diagram name="Página-1" id="j5QpKsTNcr2GwADYp7v3">
+    <mxGraphModel dx="1042" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-1" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="External Systems&#xa;ERP / E-commerce / Banking" vertex="1">
+          <mxGeometry height="78" width="260" x="20" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-2" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="API Gateway&#xa;Laravel&#xa;- Auth&#xa;- Validation&#xa;- Routing" vertex="1">
+          <mxGeometry height="102" width="260" x="422" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-3" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="Order Service&#xa;Lumen&#xa;- Order creation&#xa;- Business validation&#xa;Kafka Producer" vertex="1">
+          <mxGeometry height="102" width="260" x="824" y="338" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-4" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="Payment Service&#xa;Lumen&#xa;- Consume orders&#xa;- Simulate bank&#xa;Kafka Consumer / Producer" vertex="1">
+          <mxGeometry height="150" width="260" x="1485" y="46" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-5" parent="1" style="whiteSpace=wrap;strokeWidth=2;" value="Audit Service&#xa;- Event traceability&#xa;- Logging&#xa;Kafka Consumer" vertex="1">
+          <mxGeometry height="102" width="260" x="2196" y="86" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-6" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;" value="Kafka Cluster" vertex="1">
+          <mxGeometry height="74" width="112" x="2271" y="253" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-7" parent="1" style="strokeWidth=2;shape=process;whiteSpace=wrap;size=0.04;" value="Topic: order.created" vertex="1">
+          <mxGeometry height="39" width="178" x="1192" y="258" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-8" parent="1" style="strokeWidth=2;shape=process;whiteSpace=wrap;size=0.04;" value="Topic: payment.confirmed" vertex="1">
+          <mxGeometry height="39" width="222" x="1859" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-9" parent="1" style="strokeWidth=2;shape=process;whiteSpace=wrap;size=0.04;" value="Topic: payment.failed" vertex="1">
+          <mxGeometry height="39" width="190" x="1875" y="109" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-10" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;" value="PostgreSQL&#xa;Order DB" vertex="1">
+          <mxGeometry height="83" width="173" x="1194" y="347" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-11" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;" value="PostgreSQL&#xa;Payment DB" vertex="1">
+          <mxGeometry height="85" width="195" x="1873" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-12" parent="1" style="shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=10;strokeWidth=2;whiteSpace=wrap;" value="PostgreSQL&#xa;Audit DB" vertex="1">
+          <mxGeometry height="82" width="171" x="2506" y="95" as="geometry" />
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-13" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-1" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.49;entryX=0;entryY=0.5;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-2" value="HTTP / REST">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-14" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-2" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-3" value="HTTP / REST">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-15" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-3" style="curved=1;startArrow=none;endArrow=block;exitX=0.83;exitY=0;entryX=0;entryY=0.51;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-7" value="Produce">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1138" y="278" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-16" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-7" style="curved=1;startArrow=none;endArrow=block;exitX=0.6;exitY=0.01;entryX=0;entryY=0.5;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-4" value="Consume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1427" y="121" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-17" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-7" style="curved=1;startArrow=none;endArrow=block;exitX=0.91;exitY=1.01;entryX=0.3;entryY=1;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-5" value="Consume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1427" y="317" />
+              <mxPoint x="2139" y="317" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-18" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-4" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.12;entryX=0;entryY=0.49;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-8" value="Produce">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1802" y="39" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-19" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-4" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.53;entryX=0;entryY=0.49;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-9" value="Produce">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1802" y="128" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-20" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-8" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.22;entryX=0.18;entryY=0;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-5" value="Consume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2139" y="23" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-21" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-9" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.07;entryX=0;entryY=0.24;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-5" value="Consume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2139" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-22" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-3" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.5;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-10" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-23" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-4" style="curved=1;startArrow=none;endArrow=block;exitX=0.95;exitY=1;entryX=0;entryY=0.49;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-11" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1802" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-24" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-5" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.5;entryX=0;entryY=0.51;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-12" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-25" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-7" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;exitX=0.63;exitY=1.01;entryX=0;entryY=0.96;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1427" y="402" />
+              <mxPoint x="2139" y="402" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-26" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-8" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;exitX=1;exitY=0.97;entryX=0.22;entryY=0;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2139" y="68" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sMmQgiK_-tD8XasX4cUt-27" edge="1" parent="1" source="sMmQgiK_-tD8XasX4cUt-9" style="curved=1;dashed=1;dashPattern=2 3;startArrow=none;endArrow=block;exitX=0.71;exitY=0.99;entryX=0;entryY=0.19;rounded=0;" target="sMmQgiK_-tD8XasX4cUt-6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2139" y="213" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
