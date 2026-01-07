@@ -1,0 +1,31 @@
+[External System]
+        |
+        | HTTP REST
+        v
+[API Gateway - Laravel]
+        |
+        | HTTP
+        v
+[Order Service - Lumen]
+        |
+        | Kafka Producer
+        v
+[Kafka Topic: order.created]
+        |
+        | Kafka Consumer
+        +------------------+
+        |                  |
+        v                  v
+[Payment Service]     [Audit Service]
+        |
+        | Kafka Producer
+        v
+[Kafka Topic: payment.confirmed / failed]
+        |
+        | Kafka Consumer
+        v
+[Audit Service]
+
+(Order Service) ---> PostgreSQL
+(Payment Service) -> PostgreSQL
+(Audit Service) ---> PostgreSQL
