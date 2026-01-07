@@ -1,13 +1,27 @@
 # Kafka Topics
 
 ## order.created
-Produced by: Order Service  
-Consumed by: Payment Service, Audit Service
+- Producer: Order Service
+- Consumers: Payment Service, Audit Service
+- Partitions: 3
+- Purpose: Notify creation of a new order
 
 ## payment.confirmed
-Produced by: Payment Service  
-Consumed by: Audit Service
+- Producer: Payment Service
+- Consumers: Audit Service
+- Partitions: 3
+- Purpose: Notify successful payment processing
 
 ## payment.failed
-Produced by: Payment Service  
-Consumed by: Audit Service
+- Producer: Payment Service
+- Consumers: Audit Service
+- Partitions: 3
+- Purpose: Notify failed payment processing
+
+## Dead Letter Topics
+
+### order.created.dlt
+- Purpose: Store events that failed after retries
+
+### payment.failed.dlt
+- Purpose: Store failed payment events after retries
