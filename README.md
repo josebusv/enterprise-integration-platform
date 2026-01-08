@@ -141,3 +141,8 @@ Implementar una **plataforma de integración desacoplada**, basada en:
 José Luis Bustos Valencia
 
 Arquitectura de Software | Integraciones Empresariales | Backend
+
+## How to Run
+
+```bash
+docker compose up --build
