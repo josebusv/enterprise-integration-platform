@@ -31,6 +31,7 @@ consistencia e idempotencia.
   "version": 1,
   "payload": {}
 }
+```
 Campos obligatorios:
 
 - event_id: Identificador único del evento.
