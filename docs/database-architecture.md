@@ -1,5 +1,6 @@
 ## 1 Vista general
 
+``` sql
 +-------------------+                 +-------------------+
 |   Order Service   |                 |   Payment Servce  |
 |   PostgreSQL DB   |                 |   PostgreSQL DB   |
@@ -11,6 +12,7 @@
 |                   Audit Service                          |
 |                PostgreSQL / OLAP-ready                   |
 +----------------------------------------------------------+
+```
 
 - Cada servicio posee su base
 
@@ -46,6 +48,10 @@ CREATE TABLE processed_events (
 );
 ```
 
+Notas
+- processed_events = idempotencia
+- stado mínimo (status) solo para el dominio
+
 ---
 
 ## 3 Payment Service - Base de Datos
@@ -72,6 +78,10 @@ CREATE TABLE processed_events (
     processed_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 ```
+
+Notas
+- No FK a ordesr (servicios desacoplados)
+- Referencias lógicas, no físicas
 
 ---
 
