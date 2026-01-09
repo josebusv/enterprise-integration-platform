@@ -117,3 +117,15 @@ Esto soporta:
 - Debug
 - Reporting
 - Futuro ETL
+
+---
+
+## 5 Convenios de IDs (clave)
+
+| Campo      | Tipo    |
+| ---------- | ------- |
+| event_id   | UUID v4 |
+| order_id   | UUID    |
+| payment_id | UUID    |
+
+Generados en el servicio origen, no en DB.
