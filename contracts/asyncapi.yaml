@@ -1,0 +1,38 @@
+asyncapi: 2.6.0
+info:
+  title: Enterprise Integration Platform - Event Contracts
+  version: 1.0.0
+  description: |
+    AsyncAPI specification defining Kafka event contracts
+    for the Enterprise Integration Platform.
+
+servers:
+  kafkaBroker:
+    url: kafka:9092
+    protocol: kafka
+    description: Local Kafka broker
+
+channels:
+  order.created:
+    publish:
+      summary: Order created event
+      message:
+        name: OrderCreated
+        payload:
+          $ref: './schemas/order-created.json'
+
+  payment.confirmed:
+    publish:
+      summary: Payment confirmed event
+      message:
+        name: PaymentConfirmed
+        payload:
+          $ref: './schemas/payment-confirmed.json'
+
+  payment.failed:
+    publish:
+      summary: Payment failed event
+      message:
+        name: PaymentFailed
+        payload:
+          $ref: './schemas/payment-failed.json'
