@@ -28,3 +28,35 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+
+# Ignorar dependencias de Node.js
+api-gateway/node_modules/
+services/**/node_modules/
+
+# Ignorar logs de npm y yarn
+api-gateway/npm-debug.log
+api-gateway/yarn-error.log
+services/**/npm-debug.log
+services/**/yarn-error.log
+
+# Ignorar archivos de entorno
+api-gateway/.env
+services/**/.env
+
+# Ignorar compilados de Laravel
+api-gateway/bootstrap/compiled.php
+services/**/bootstrap/compiled.php
+
+# Ignorar almacenamiento de Laravel
+api-gateway/storage/*.key
+services/**/storage/*.key
+api-gateway/storage/pail
+services/**/storage/pail
+
+# Ignorar resultados de PHPUnit
+api-gateway/.phpunit.result.cache
+services/**/.phpunit.result.cache
+
+# Ignorar archivos de configuración sensibles
+api-gateway/auth.json
+services/**/auth.json
