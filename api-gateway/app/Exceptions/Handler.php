@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -26,5 +28,31 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $exception): JsonResponse
+    {
+        if ($exception instanceof ValidationException) {
+            return response()->json([
+                'error' => 'Invalid request payload',
+                'details' => $exception->errors(),
+            ], 400);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->json([
+                'error' => 'Unauthorized',
+            ], 401);
+        }
+
+        if ($exception instanceof ThrottleRequestsException) {
+            return response()->json([
+                'error' => 'Too Many Requests',
+            ], 429);
+        }
+
+        return response()->json([
+            'error' => 'Internal Server Error',
+        ], 500);
     }
 }

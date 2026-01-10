@@ -19,4 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/api/orders', [OrderController::class, 'createOrder']);
+Route::middleware(['throttle:api', 'validate.headers'])->group(function () {
+    // Ruta para crear órdenes
+    Route::post('/api/orders', [OrderController::class, 'createOrder']);
+});
